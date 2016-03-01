@@ -78,7 +78,7 @@ func (r *ConsulAdapter) Ping() error {
 func (r *ConsulAdapter) Register(service *bridge.Service) error {
 	registration := new(consulapi.AgentServiceRegistration)
 	registration.ID = service.ID
-	registration.Name = service.Name
+	registration.Name = strings.Replace(service.Name, ".", "-", -1)
 	registration.Port = service.Port
 	registration.Tags = service.Tags
 	registration.Address = service.IP
